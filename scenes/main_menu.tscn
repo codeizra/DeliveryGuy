@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=3 uid="uid://beb7d1nmvtsfk"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_mo4ty"]
+[ext_resource type="Texture2D" uid="uid://b7gyk5fdwjtop" path="res://assets/open-cardboard.png" id="2_poshx"]
+[ext_resource type="FontFile" uid="uid://d3xexcg8b2p13" path="res://assets/fonts/press-start-2p.regular.ttf" id="2_qtuff"]
+[ext_resource type="AudioStream" uid="uid://wbyeqay3ifsl" path="res://assets/sound/longwalks-lofi.mp3" id="3_37hs3"]
+[ext_resource type="Texture2D" uid="uid://ctw66hdpuv7oh" path="res://assets/Yellow_BOXTRUCK_CLEAN_All_012.png" id="3_l5v5k"]
+[ext_resource type="Texture2D" uid="uid://t706nq2iej0p" path="res://assets/Yellow_BOXTRUCK_CLEAN_All_036.png" id="4_dfv5y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61ykh"]
+content_margin_top = 25.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbdud"]
+bg_color = Color(0.729412, 0.647059, 0.0784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q28x4"]
+bg_color = Color(0.729412, 0.647059, 0.0784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[node name="MainMenu" type="Node2D"]
+position = Vector2(320, 198)
+script = ExtResource("1_mo4ty")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.254902, 0.658824, 0.921569, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 54)
+scale = Vector2(0.502226, 0.502226)
+texture = ExtResource("2_poshx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-248, -126)
+texture = ExtResource("3_l5v5k")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(248, -126)
+texture = ExtResource("4_dfv5y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -131.0
+offset_right = 180.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtuff")
+theme_override_font_sizes/font_size = 30
+text = "Delivery Guy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighscoreLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qtuff")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_61ykh")
+text = "Highscore: 50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qtuff")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_xbdud")
+text = "START"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qtuff")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_q28x4")
+text = "EXIT"
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_37hs3")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
