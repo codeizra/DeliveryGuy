@@ -10,6 +10,8 @@ func add_score(points: int) -> void:
 	score += points
 	if score < 0:
 		score = 0
+
+func check_and_save_highscore() -> void:
 	if score > highscore:
 		highscore = score
 		save_highscore()

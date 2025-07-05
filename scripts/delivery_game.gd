@@ -61,27 +61,25 @@ func _on_music_finished() -> void:
 	
 func _on_timer_timeout() -> void:
 	get_tree().paused = true
+	GameManager.check_and_save_highscore()
 	game_over_menu.set_score(GameManager.score)
 	game_over_menu.set_highscore(GameManager.highscore)
 	game_over_menu.visible = true
-	print("GameOverMenu shown")
+	music_player.playing = false
 
 func _on_resume_button_pressed() -> void:
-	print("Resume button pressed")
 	pause_menu.visible = false
 	get_tree().paused = false
-	print("Game paused: ", get_tree().paused)
 
 func _on_play_again_button_pressed() -> void:
-	print("Play Again button pressed")
 	get_tree().paused = false
 	GameManager.reset_score()
 	get_tree().reload_current_scene()
 
 func _on_main_menu_button_pressed() -> void:
-	print("Main Menu button pressed")
 	get_tree().paused = false
+	GameManager.check_and_save_highscore()
 	GameManager.reset_score()
 	var error = get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	if error != OK:
-		print("Failed to load main_menu.tscn, error: ", error)
+		print("failed to load main_menu.tscn, error: ", error)
